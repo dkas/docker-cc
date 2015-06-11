@@ -16,9 +16,8 @@ ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
 
 # Install MariaDB, create mtab to make mySQL happy
-RUN apt-get -y install mariadb-server
-RUN sed -i 's/^innodb_flush_method/#innodb_flush_method/' /etc/mysql/my.cnf
 RUN cat /proc/mounts > /etc/mtab
+RUN apt-get -y install mariadb-server
 
 # Install nginx
 RUN apt-get -y install nginx
