@@ -8,6 +8,8 @@ Die Features:
 
 # PHP5-FPM, eine CGI-Implementation von PHP die unter NGINX gut funktioniert
 
+# Supervisord, ein Prozessmanager um all die Einzelprozesse in einem Dockerimage zu orchestrieren. 
+
 # Silverstripe, ein quelloffenes CMS
 
 # .. ein selbstgeschriebenes Callcenter mit optionaler LDAP Anbindung.
