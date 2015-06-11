@@ -1,1 +1,24 @@
-Testimage zum Lernen von Docker
+Das ist ein Testimage zum Lernen von Docker. Mehr über Docker unter: http://www.docker.com
+
+Die Features:
+
+# NGINX, ein schneller Webserver
+
+# MariaDB, ein quelloffener MySQL fork
+
+# PHP5-FPM, eine CGI-Implementation von PHP die unter NGINX gut funktioniert
+
+# Silverstripe, ein quelloffenes CMS
+
+# .. ein selbstgeschriebenes Callcenter mit optionaler LDAP Anbindung.
+
+###########################
+#        WARNUNG          #
+###########################
+
+Dieses image ist eine reine Spielwiese, um Docker (und git) näher kennenzulernen. 
+
+Es ist höchstwahrscheinlich non-funktional und kaputt.
+
+
+
