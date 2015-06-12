@@ -36,6 +36,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install python-setuptools
 RUN easy_install supervisor
 ADD supervisord.conf /etc/supervisord.conf
 
+# Download and Extract Silverstripe
+RUN wget -O /tmp/Silverstripe.tgz http://www.silverstripe.org/assets/releases/SilverStripe-cms-v3.1.13.tar.gz
+RUN tar -xzvf /tmp/Silverstripe.tgz -C /var/www
+RUN chown -R www-data:www-data /var/www
+
 EXPOSE 80
 
 CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
