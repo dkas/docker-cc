@@ -4,7 +4,10 @@ FROM        ubuntu:latest
 MAINTAINER  Dominique Kaspar "dk@8gm.de"
 
 # Update packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get dist-upgrade -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+
+# Upgrade Distribution, fetch security updates
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
 # install Software: curl, wget
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install curl wget
