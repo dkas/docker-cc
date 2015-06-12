@@ -19,14 +19,16 @@ ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
 
 # Install MariaDB, nginx, php5 & modules
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server nginx php5-fpm php5-mysql php-apc php5-imap php5-mcrypt php5-curl php5-gd php5-json
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server nginx php5-fpm php5-mysql php-apc php5-imap php5-mcrypt php5-curl php5-gd php5-json tidy php5-tidy
 
-# Custom my.cnf for mySQL (MariaDB)
+# Custom my.cnf for mySQL (MariaDB), linking socket to default location
 ADD my.cnf /etc/mysql/my.cnf
+RUN mkdir /var/run/mysqld && ln -s /tmp/mysqld.sock /var/run/mysqld/mysqld.sock
 
 # Configure nginx for PHP websites
 ADD nginx_default.conf /etc/nginx/sites-available/default
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
+RUN sed -i 's/\;date.timezone\ \=/date.timezone\ \=\ Europe\/Berlin/g' /etc/php5/fpm/php.ini 
 RUN mkdir -p /var/www && chown -R www-data:www-data /var/www
 
 # Supervisord
