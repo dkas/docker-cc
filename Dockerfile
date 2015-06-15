@@ -22,12 +22,12 @@ ENV LC_ALL de_DE.UTF-8
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server nginx php5-fpm php5-mysql php-apc php5-imap php5-mcrypt php5-curl php5-gd php5-json tidy php5-tidy
 
 # Custom my.cnf for mySQL (MariaDB), linking socket to default location
-ADD my.cnf /etc/mysql/my.cnf
+COPY my.cnf /etc/mysql/my.cnf
 RUN mkdir /var/run/mysqld && ln -s /tmp/mysqld.sock /var/run/mysqld/mysqld.sock
 
 # Configure nginx for PHP websites
-ADD nginx_default.conf /etc/nginx/sites-available/default
-ADD nginx.conf /etc/nginx/nginx.conf
+COPY nginx_default.conf /etc/nginx/sites-available/default
+COPY nginx.conf /etc/nginx/nginx.conf
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
 RUN sed -i 's/\;date.timezone\ \=/date.timezone\ \=\ Europe\/Berlin/g' /etc/php5/fpm/php.ini 
 RUN sed -i 's/\memory_limit\ \=\ 128M/memory_limit\ \=\ 512M/g' /etc/php5/fpm/php.ini
@@ -44,7 +44,7 @@ RUN tar -xzvf /tmp/Silverstripe.tgz -C /var/www
 RUN chown -R www-data:www-data /var/www
 
 # Callcenter
-ADD cc.tgz /tmp/cc.tgz
+COPY cc.tgz /tmp/cc.tgz
 RUN tar -xzvf /tmp/cc.tgz -C /var/www/
 
 EXPOSE 80
