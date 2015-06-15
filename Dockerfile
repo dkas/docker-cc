@@ -27,6 +27,7 @@ RUN mkdir /var/run/mysqld && ln -s /tmp/mysqld.sock /var/run/mysqld/mysqld.sock
 
 # Configure nginx for PHP websites
 ADD nginx_default.conf /etc/nginx/sites-available/default
+ADD nginx.conf /etc/nginx/nginx.conf
 RUN echo "cgi.fix_pathinfo = 0;" >> /etc/php5/fpm/php.ini
 RUN sed -i 's/\;date.timezone\ \=/date.timezone\ \=\ Europe\/Berlin/g' /etc/php5/fpm/php.ini 
 RUN mkdir -p /var/www && chown -R www-data:www-data /var/www
