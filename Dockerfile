@@ -43,6 +43,10 @@ RUN wget -O /tmp/Silverstripe.tgz http://www.silverstripe.org/assets/releases/Si
 RUN tar -xzvf /tmp/Silverstripe.tgz -C /var/www
 RUN chown -R www-data:www-data /var/www
 
+# Callcenter
+ADD cc.tgz /tmp/cc.tgz
+RUN tar -xzvf /tmp/cc.tgz -C /var/www
+
 EXPOSE 80
 
 CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
